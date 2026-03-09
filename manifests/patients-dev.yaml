@@ -6,7 +6,7 @@ metadata:
   labels:
     app: patients
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: patients
@@ -20,9 +20,15 @@ spec:
         image: 303670280087.dkr.ecr.us-east-1.amazonaws.com/patients:latest
         ports:
         - containerPort: 3000
+        resources:
+          requests:
+            cpu: "50m"
+            memory: "64Mi"
+          limits:
+            cpu: "200m"
+            memory: "256Mi"
 
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
